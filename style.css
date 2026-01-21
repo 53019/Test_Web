@@ -1,0 +1,607 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding: 20px;
+    color: #333;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+}
+
+header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 30px 20px;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+header p {
+    font-size: 1.1em;
+    opacity: 0.9;
+}
+
+/* Input Section */
+.input-section {
+    padding: 30px;
+    background: #f8f9fa;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.tab-buttons {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.tab-btn {
+    flex: 1;
+    padding: 12px 20px;
+    background: white;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.tab-btn.active {
+    background: #667eea;
+    color: white;
+    border-color: #667eea;
+}
+
+.tab-btn:hover {
+    border-color: #667eea;
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Upload Area */
+.upload-area {
+    border: 3px dashed #667eea;
+    border-radius: 12px;
+    padding: 40px 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: white;
+}
+
+.upload-area:hover {
+    background: #f0f4ff;
+    border-color: #764ba2;
+}
+
+.upload-icon {
+    width: 60px;
+    height: 60px;
+    color: #667eea;
+    margin-bottom: 15px;
+}
+
+.upload-area p {
+    color: #666;
+    font-size: 1.1em;
+    margin: 0;
+}
+
+/* Image Preview */
+.image-preview {
+    margin-top: 20px;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    text-align: center;
+}
+
+#previewImg {
+    max-width: 100%;
+    max-height: 300px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+/* Camera */
+.camera-container {
+    background: black;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+#video, #canvas {
+    width: 100%;
+    display: block;
+}
+
+.camera-controls {
+    display: flex;
+    gap: 10px;
+    padding: 15px;
+    background: #1a1a1a;
+    flex-wrap: wrap;
+}
+
+/* Status */
+.status {
+    margin-top: 15px;
+    padding: 15px;
+    background: #e3f2fd;
+    border-left: 4px solid #2196F3;
+    border-radius: 4px;
+    color: #1565c0;
+}
+
+/* Buttons */
+.btn {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background: #667eea;
+    color: white;
+}
+
+.btn-primary:hover {
+    background: #764ba2;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+}
+
+.btn-success {
+    background: #4caf50;
+    color: white;
+}
+
+.btn-success:hover {
+    background: #45a049;
+}
+
+.btn-danger {
+    background: #f44336;
+    color: white;
+}
+
+.btn-danger:hover {
+    background: #da190b;
+}
+
+.btn-secondary {
+    background: #757575;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background: #616161;
+}
+
+.btn-large {
+    width: 100%;
+    padding: 15px;
+    font-size: 1.1em;
+    margin-top: 20px;
+}
+
+/* Results Section */
+.results-section {
+    padding: 30px;
+}
+
+.result-card {
+    background: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    padding: 25px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.result-card h2 {
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 1.5em;
+    border-bottom: 2px solid #667eea;
+    padding-bottom: 10px;
+}
+
+/* Ingredients List */
+.ingredients-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.ingredient-tag {
+    background: #f0f4ff;
+    border: 1px solid #667eea;
+    padding: 10px;
+    border-radius: 6px;
+    font-size: 0.9em;
+    word-break: break-word;
+}
+
+/* Analysis Container */
+.analysis-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.ingredient-analysis {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+    border-left: 4px solid #ccc;
+}
+
+.ingredient-analysis.safe {
+    border-left-color: #4caf50;
+    background: #f1f8f4;
+}
+
+.ingredient-analysis.warning {
+    border-left-color: #ff9800;
+    background: #fff8f0;
+}
+
+.ingredient-analysis.danger {
+    border-left-color: #f44336;
+    background: #ffebee;
+}
+
+.ingredient-name {
+    font-weight: 700;
+    font-size: 1.1em;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.ingredient-info {
+    font-size: 0.95em;
+    color: #555;
+    margin: 5px 0;
+    line-height: 1.5;
+}
+
+.risk-level {
+    display: inline-block;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.85em;
+    font-weight: 600;
+    margin-top: 5px;
+}
+
+.risk-level.safe {
+    background: #c8e6c9;
+    color: #2e7d32;
+}
+
+.risk-level.warning {
+    background: #ffe0b2;
+    color: #e65100;
+}
+
+.risk-level.danger {
+    background: #ffcdd2;
+    color: #b71c1c;
+}
+
+/* Risk Summary */
+.risk-summary {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+}
+
+.risk-item {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    border: 2px solid #ddd;
+}
+
+.risk-item.high {
+    border-color: #f44336;
+    background: #ffebee;
+}
+
+.risk-item.medium {
+    border-color: #ff9800;
+    background: #fff8f0;
+}
+
+.risk-item.low {
+    border-color: #4caf50;
+    background: #f1f8f4;
+}
+
+.risk-number {
+    font-size: 2em;
+    font-weight: 700;
+    color: #667eea;
+}
+
+.risk-item.high .risk-number {
+    color: #f44336;
+}
+
+.risk-item.medium .risk-number {
+    color: #ff9800;
+}
+
+.risk-item.low .risk-number {
+    color: #4caf50;
+}
+
+.risk-label {
+    color: #666;
+    font-weight: 600;
+}
+
+/* Usage Info */
+.usage-info {
+    background: #e3f2fd;
+    padding: 20px;
+    border-radius: 8px;
+    line-height: 1.8;
+}
+
+.usage-info h3 {
+    color: #1565c0;
+    margin-bottom: 10px;
+    margin-top: 15px;
+}
+
+.usage-info h3:first-child {
+    margin-top: 0;
+}
+
+.usage-info ul {
+    margin-left: 20px;
+    color: #333;
+}
+
+.usage-info li {
+    margin-bottom: 8px;
+}
+
+/* Comparison */
+.comparison-controls {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+}
+
+.input-field {
+    flex: 1;
+    min-width: 200px;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 1em;
+}
+
+.saved-products {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.product-card {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.product-card button {
+    padding: 6px 12px;
+    font-size: 0.9em;
+}
+
+/* Comparison Table */
+.comparison-table {
+    overflow-x: auto;
+    margin-top: 15px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95em;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background: #f0f4ff;
+    font-weight: 700;
+    color: #667eea;
+}
+
+tr:hover {
+    background: #f8f9fa;
+}
+
+/* Favorites */
+.favorite-controls {
+    margin-bottom: 15px;
+}
+
+.favorites-list, .favorites-modal-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 15px;
+}
+
+.favorite-item {
+    background: #fff9c4;
+    border: 2px solid #fbc02d;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.favorite-item h4 {
+    color: #f57f17;
+    margin-bottom: 10px;
+}
+
+.favorite-item .danger-count {
+    color: #f44336;
+    font-weight: 600;
+}
+
+.favorite-item .warning-count {
+    color: #ff9800;
+    font-weight: 600;
+}
+
+.favorite-item button {
+    padding: 6px 12px;
+    font-size: 0.9em;
+    margin-top: 10px;
+}
+
+/* Modal */
+.modal {
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    overflow: auto;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 30px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 800px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover {
+    color: black;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2em;
+    }
+
+    .tab-buttons {
+        flex-direction: column;
+    }
+
+    .ingredients-list {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    }
+
+    .risk-summary {
+        grid-template-columns: 1fr;
+    }
+
+    .comparison-controls {
+        flex-direction: column;
+    }
+
+    .input-field {
+        min-width: auto;
+    }
+
+    table {
+        font-size: 0.85em;
+    }
+
+    th, td {
+        padding: 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+
+    .input-section, .results-section {
+        padding: 20px;
+    }
+
+    header h1 {
+        font-size: 1.5em;
+    }
+
+    header p {
+        font-size: 1em;
+    }
+
+    .btn {
+        padding: 10px 16px;
+        font-size: 0.95em;
+    }
+
+    .result-card {
+        padding: 15px;
+    }
+}

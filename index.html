@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sunscreen Ingredient Analyzer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>☀️ Sunscreen Ingredient Analyzer</h1>
+            <p>Scan, analyze, and compare sunscreen ingredients for safety and effectiveness</p>
+        </header>
+
+        <section class="input-section">
+            <div class="upload-container">
+                <div class="tab-buttons">
+                    <button class="tab-btn active" data-tab="upload">Upload Image</button>
+                    <button class="tab-btn" data-tab="camera">Use Camera</button>
+                </div>
+
+                <!-- Upload Tab -->
+                <div id="upload" class="tab-content active">
+                    <div class="upload-area" id="uploadArea">
+                        <svg class="upload-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="17 8 12 3 7 8"></polyline>
+                            <line x1="12" y1="3" x2="12" y2="15"></line>
+                        </svg>
+                        <p>Drag & drop your sunscreen label image here or click to select</p>
+                        <input type="file" id="imageInput" accept="image/*" style="display: none;">
+                    </div>
+                </div>
+
+                <!-- Camera Tab -->
+                <div id="camera" class="tab-content">
+                    <div class="camera-container">
+                        <video id="video" autoplay playsinline></video>
+                        <canvas id="canvas" style="display: none;"></canvas>
+                        <div class="camera-controls">
+                            <button id="startCameraBtn" class="btn btn-primary">Start Camera</button>
+                            <button id="captureBtn" class="btn btn-success" style="display: none;">Capture Photo</button>
+                            <button id="stopCameraBtn" class="btn btn-danger" style="display: none;">Stop Camera</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Image Preview -->
+            <div id="imagePreview" class="image-preview" style="display: none;">
+                <img id="previewImg" alt="Preview">
+                <button id="clearImageBtn" class="btn btn-secondary">Clear</button>
+            </div>
+
+            <!-- OCR Status -->
+            <div id="ocrStatus" class="status" style="display: none;"></div>
+
+            <!-- Analyze Button -->
+            <button id="analyzeBtn" class="btn btn-primary btn-large" style="display: none;">
+                Analyze Ingredients
+            </button>
+        </section>
+
+        <!-- Results Section -->
+        <section id="resultsSection" class="results-section" style="display: none;">
+            <!-- Extracted Ingredients -->
+            <div class="result-card">
+                <h2>📋 Extracted Ingredients</h2>
+                <div id="extractedIngredients" class="ingredients-list"></div>
+                <button id="retryOcrBtn" class="btn btn-secondary">Retry OCR</button>
+            </div>
+
+            <!-- Ingredient Analysis -->
+            <div class="result-card">
+                <h2>⚠️ Safety Analysis</h2>
+                <div id="safetyAnalysis" class="analysis-container"></div>
+            </div>
+
+            <!-- Risk Summary -->
+            <div class="result-card">
+                <h2>🔍 Risk Summary</h2>
+                <div id="riskSummary" class="risk-summary"></div>
+            </div>
+
+            <!-- SPF & Usage Info -->
+            <div class="result-card">
+                <h2>💡 Usage Guide</h2>
+                <div id="usageInfo" class="usage-info"></div>
+            </div>
+
+            <!-- Comparison Tool -->
+            <div class="result-card">
+                <h2>📊 Compare Products</h2>
+                <div class="comparison-controls">
+                    <input type="text" id="productName" placeholder="Enter product name (optional)" class="input-field">
+                    <button id="saveProductBtn" class="btn btn-secondary">Save for Comparison</button>
+                </div>
+                <div id="savedProducts" class="saved-products"></div>
+                <button id="compareBtn" class="btn btn-primary" style="display: none;">Show Comparison</button>
+            </div>
+
+            <!-- Comparison View -->
+            <div id="comparisonView" class="result-card" style="display: none;">
+                <h2>📈 Comparison Results</h2>
+                <div id="comparisonTable"></div>
+                <button id="clearComparisonBtn" class="btn btn-secondary">Clear Comparison</button>
+            </div>
+
+            <!-- Favorites -->
+            <div class="result-card">
+                <h2>⭐ Favorites</h2>
+                <div class="favorite-controls">
+                    <button id="addFavoriteBtn" class="btn btn-secondary">Add to Favorites</button>
+                </div>
+                <div id="favoritesList" class="favorites-list"></div>
+            </div>
+
+            <button id="startOverBtn" class="btn btn-primary btn-large">Scan Another Label</button>
+        </section>
+
+        <!-- Favorites Modal -->
+        <div id="favoritesModal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Your Favorite Sunscreens</h2>
+                <div id="favoritesModalContent" class="favorites-modal-list"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
